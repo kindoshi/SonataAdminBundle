@@ -554,12 +554,40 @@ example above:
 
     class PageAdmin extends AbstractAdmin
     {
+        // Set BaseRoutePattern Property specifically
+        protected $baseRoutePattern = 'PageImageSpecial';
+        
+        // Specified as 4th parameter
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
                 ->add('image1', 'sonata_type_admin', array(), array(
                     'admin_code' => 'sonata.admin.imageSpecial'
                 ))
+
+                // ...
+            ;
+        }
+        
+        // Specified as 3rd parameter
+        protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+        {
+            $datagridMapper
+                ->add('image1', null, array(
+                    'admin_code' => 'sonata.admin.imageSpecial'
+                ), 'sonata_type_admin', array())
+
+                // ...
+            ;
+        }
+        
+        // Specified as 3rd parameter
+        protected function configureListFields(ListMapper $listMapper)
+        {
+            $listMapper
+                ->add('image1', null, array(
+                    'admin_code' => 'sonata.admin.imageSpecial'
+                ), 'sonata_type_admin', array())
 
                 // ...
             ;
